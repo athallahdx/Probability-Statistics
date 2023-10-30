@@ -10,7 +10,9 @@ class grouped_data{
 
         void get_Grouped_Data();
         void show_Grouped_Data();
-        //double findMode(const std::vector<std::vector<int>>);
+        double findMode();
+        double findMean();
+        double findMedian();
         
 
 

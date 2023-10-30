@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
+#include <cmath> 
 #include "groupedData.h"
+
 
 void grouped_data::get_Grouped_Data(){
     int row;
@@ -8,12 +10,12 @@ void grouped_data::get_Grouped_Data(){
     int upperBound;
     int freq;
 
-    std::cout << "Berapa banyak baris data ? : ";
+    std::cout << "Berapa banyak baris data : ";
     std::cin >> row;
     for(int i=0; i<row; i++){
         std::cout << "Masukkan data baris ke-" << i+1 << ": ";
         std::cin >> lowerBound >> upperBound;
-        std::cout << "Masukkan frekuensi baris tersebut: ";
+        std::cout << "Masukkan frekuensi: ";
         std::cin >> freq;
         data.push_back(std::make_pair(lowerBound, upperBound));
         frequency.push_back(freq);
@@ -29,9 +31,78 @@ void grouped_data::show_Grouped_Data(){
         for(int i=0; i<data.size(); i++){
             std::cout << "|   " <<  data[i].first << "-" << data[i].second <<"     |        " << frequency[i] << "      |"  << std::endl; 
         }
-        std::cout << "______________________________\n";
+        std::cout << " _____________________________\n";
 }
 
-/*double grouped_data::findMode(const std::vector<std::vector<int>>){
+double grouped_data::findMode(){
+    int maxFrequency=frequency[0];
+    int indexMax=0;
+    int d1,d2;
+    for(int i=1; i<frequency.size(); i++){
+        if(frequency[i]>maxFrequency){
+            maxFrequency=frequency[i];
+            indexMax=i;
+        }
+    }
 
-}*/
+      if (indexMax == 0) {
+        d1 = maxFrequency; 
+        d2 = abs(maxFrequency - frequency[indexMax + 1]);
+    } else if (indexMax == frequency.size() - 1) {
+        d1 = abs(maxFrequency - frequency[indexMax - 1]);
+        d2 = maxFrequency;
+    } else {
+        d1 = abs(maxFrequency - frequency[indexMax - 1]);
+        d2 = abs(maxFrequency - frequency[indexMax + 1]);
+    }
+
+    double lowerBound=data[indexMax].first-0.5;
+    int p=(data[indexMax].second-data[indexMax].first) + 1;
+
+    double mode= lowerBound + (((double)d1/(d1+d2)) * p);
+    return mode;
+}
+
+double grouped_data::findMean(){
+    double sumFx=0.0;
+    int sumF=0;
+
+    for(int i=0; i<data.size(); i++){
+        double midPoint=(data[i].first + data[i].second)/2.0;
+        sumFx += midPoint * frequency[i];
+        sumF += frequency[i];
+    }
+
+    if(sumF == 0){
+        return 0.0;
+    }
+
+    return sumFx/sumF;
+}
+
+double grouped_data::findMedian(){
+    std::vector<int> frequencyCummulative;
+    int temp=0;
+
+    for(int i=0; i<frequency.size(); i++){
+        temp+=frequency[i];
+        frequencyCummulative.push_back(temp); 
+    }
+
+    int totalFrequency=frequencyCummulative.back();
+    double locateMedian=totalFrequency/2.0;
+
+    int row; 
+    for(row=0; row<frequencyCummulative.size(); row++){
+       if(frequencyCummulative[row]>=locateMedian){
+            break;
+       }
+    }
+
+    double lowerBound=data[row].first-0.5;
+    int previousCummulativeFrequency=(row==0) ? 0 : frequencyCummulative[row-1];
+    double p=(data[row].second-data[row].first) +1;
+    
+    double median= lowerBound + ((locateMedian-previousCummulativeFrequency) / frequency[row])*p;
+    return median;
+}
