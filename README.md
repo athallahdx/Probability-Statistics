@@ -1,5 +1,5 @@
 # Probability-Statistics
 C++ Source Code for Probability &amp; Statistic Program 
-- Single Data 
-- Groups Data
+- Ungrouped Data 
+- Grouped Data
 - Binomial Probability
