@@ -109,7 +109,7 @@ double grouped_data::findMedian(){
     return median;
 }
 
-double* grouped_data::kuartil() {
+double* grouped_data::findKuartil() {
     std::vector<int> frequencyCummulative;
     int temp = 0;
 
@@ -147,9 +147,9 @@ double* grouped_data::kuartil() {
     double* kuartilResults = new double[3];
 
     int p=(data[0].second-data[0].first)+1;
-    kuartilResults[0] = lowerBound1 + ((locateKuartil1 -frequencyCummulative[lowerBound1Index - 1]) / frequency[lowerBound1Index]) * p;
-    kuartilResults[1] = lowerBound2 + ((locateKuartil2 -frequencyCummulative[lowerBound2Index - 1]) / frequency[lowerBound2Index]) * p;
-    kuartilResults[2] = lowerBound3 + ((locateKuartil3 -frequencyCummulative[lowerBound3Index - 1]) / frequency[lowerBound3Index]) * p;
+    kuartilResults[0] = lowerBound1 + ((locateKuartil1 - (lowerBound1Index > 0 ? frequencyCummulative[lowerBound1Index - 1] : 0)) / frequency[lowerBound1Index]) * p;
+    kuartilResults[1] = lowerBound2 + ((locateKuartil2 - (lowerBound2Index > 0 ? frequencyCummulative[lowerBound2Index - 1] : 0)) / frequency[lowerBound2Index]) * p;
+    kuartilResults[2] = lowerBound3 + ((locateKuartil3 - (lowerBound3Index > 0 ? frequencyCummulative[lowerBound3Index - 1] : 0)) / frequency[lowerBound3Index]) * p;
 
     return kuartilResults;
 }

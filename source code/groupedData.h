@@ -13,7 +13,7 @@ class grouped_data{
         double findMode();
         double findMean();
         double findMedian();
-        double* kuartil();
+        double* findKuartil();
         
 
 
