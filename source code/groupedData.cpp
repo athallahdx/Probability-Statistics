@@ -22,6 +22,8 @@ void grouped_data::get_Grouped_Data(){
     }
 }
 
+
+
 void grouped_data::show_Grouped_Data(){
         std::cout << "\nDATA KELOMPOK YANG TELAH DI-INPUT: \n";
         std::cout << " _____________________________\n";
@@ -103,6 +105,51 @@ double grouped_data::findMedian(){
     int previousCummulativeFrequency=(row==0) ? 0 : frequencyCummulative[row-1];
     double p=(data[row].second-data[row].first) +1;
     
-    double median= lowerBound + ((locateMedian-previousCummulativeFrequency) / frequency[row])*p;
+    double median= lowerBound + ((  locateMedian-previousCummulativeFrequency) / frequency[row])*p;
     return median;
+}
+
+double* grouped_data::kuartil() {
+    std::vector<int> frequencyCummulative;
+    int temp = 0;
+
+    for(int i = 0; i < frequency.size(); i++){
+        temp += frequency[i];
+        frequencyCummulative.push_back(temp); 
+    }
+
+    int totalFrequency = frequencyCummulative.back();
+    double locateKuartil1 = 0.25 * totalFrequency;
+    double locateKuartil2 = 0.5 * totalFrequency;
+    double locateKuartil3 = 0.75 * totalFrequency;
+
+    int lowerBound1Index = -1, lowerBound2Index = -1, lowerBound3Index = -1;
+
+    for(int i = 0; i < frequencyCummulative.size(); i++){
+        if(lowerBound1Index == -1 && frequencyCummulative[i] >= locateKuartil1){
+            lowerBound1Index = i;
+        }
+        if(lowerBound2Index == -1 && frequencyCummulative[i] >= locateKuartil2){
+            lowerBound2Index = i;
+        }
+        if(lowerBound3Index == -1 && frequencyCummulative[i] >= locateKuartil3){
+            lowerBound3Index = i;
+        }
+        if(lowerBound1Index != -1 && lowerBound2Index != -1 && lowerBound3Index != -1) {
+            break; 
+        }
+    }
+
+    double lowerBound1 = data[lowerBound1Index].first - 0.5;
+    double lowerBound2 = data[lowerBound2Index].first - 0.5;
+    double lowerBound3 = data[lowerBound3Index].first - 0.5;
+
+    double* kuartilResults = new double[3];
+
+    int p=(data[0].second-data[0].first)+1;
+    kuartilResults[0] = lowerBound1 + ((locateKuartil1 -frequencyCummulative[lowerBound1Index - 1]) / frequency[lowerBound1Index]) * p;
+    kuartilResults[1] = lowerBound2 + ((locateKuartil2 -frequencyCummulative[lowerBound2Index - 1]) / frequency[lowerBound2Index]) * p;
+    kuartilResults[2] = lowerBound3 + ((locateKuartil3 -frequencyCummulative[lowerBound3Index - 1]) / frequency[lowerBound3Index]) * p;
+
+    return kuartilResults;
 }
