@@ -14,14 +14,22 @@ class grouped_data{
         void get_frequency_cummulative();
         void get_classInterval();
         void show_Grouped_Data();
+        void loopMenu();
+        int getUserOption();
+
+    private:
         double findMode();
         double findMean();
         double findMedian();
         double* findKuartil();
         double findDesil(int desilN);
         double findPersentil(int PersentilN);
-
-
+        double findInterQuartileRange();
+        double findRange();
+        double findQuartileDeviation();
+        double findMeanDeviation();
+        double findVariance();
+        double findStandardDeviation();
 
 };
 

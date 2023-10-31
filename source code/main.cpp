@@ -9,7 +9,7 @@ int main(){
     system("cls");
     data_kelompok.show_Grouped_Data();
 
-    double mode = data_kelompok.findMode();
+    /*double mode = data_kelompok.findMode();
     std::cout << "\nModus Data Kelompok: "  << mode << std::endl;
 
     double mean = data_kelompok.findMean();
@@ -29,6 +29,18 @@ int main(){
 
     double persentil = data_kelompok.findPersentil(96);
     std::cout << "Persentil Ke-96: " << persentil << std::endl;
+
+    double interQuartileRange = data_kelompok.findInterQuartileRange();
+    std::cout << "Nilai Jangkauan antarkuartil: " << interQuartileRange << std::endl;
+
+    double meanDeviation = data_kelompok.findMeanDeviation();
+    std::cout << "Nilai Simpangan rata-rata: " << meanDeviation << std::endl;
+
+    double variance = data_kelompok.findVariance();
+    std::cout << "Nilai Ragam(Variansi): " << variance << std::endl;
+
+    double standardDeviation = data_kelompok.findStandardDeviation();
+    std::cout << "Nilai Standar Deviasi: " << standardDeviation << std::endl;*/
 
     return 0;
 }
