@@ -22,7 +22,18 @@ void grouped_data::get_Grouped_Data(){
     }
 }
 
+void grouped_data::get_frequency_cummulative(){
+    int temp = 0;
 
+    for(int i = 0; i < frequency.size(); i++){
+        temp += frequency[i];
+        frequencyCummulative.push_back(temp); 
+    }
+}
+
+void grouped_data::get_classInterval(){
+    classInterval=(data[0].second-data[0].first)+1;
+}
 
 void grouped_data::show_Grouped_Data(){
         std::cout << "\nDATA KELOMPOK YANG TELAH DI-INPUT: \n";
@@ -83,14 +94,6 @@ double grouped_data::findMean(){
 }
 
 double grouped_data::findMedian(){
-    std::vector<int> frequencyCummulative;
-    int temp=0;
-
-    for(int i=0; i<frequency.size(); i++){
-        temp+=frequency[i];
-        frequencyCummulative.push_back(temp); 
-    }
-
     int totalFrequency=frequencyCummulative.back();
     double locateMedian=totalFrequency/2.0;
 
@@ -110,14 +113,6 @@ double grouped_data::findMedian(){
 }
 
 double* grouped_data::findKuartil() {
-    std::vector<int> frequencyCummulative;
-    int temp = 0;
-
-    for(int i = 0; i < frequency.size(); i++){
-        temp += frequency[i];
-        frequencyCummulative.push_back(temp); 
-    }
-
     int totalFrequency = frequencyCummulative.back();
     double locateKuartil1 = 0.25 * totalFrequency;
     double locateKuartil2 = 0.5 * totalFrequency;
@@ -152,4 +147,36 @@ double* grouped_data::findKuartil() {
     kuartilResults[2] = lowerBound3 + ((locateKuartil3 - (lowerBound3Index > 0 ? frequencyCummulative[lowerBound3Index - 1] : 0)) / frequency[lowerBound3Index]) * p;
 
     return kuartilResults;
+}
+
+double grouped_data::findDesil(int desilN){
+    int totalFrequency = frequencyCummulative.back();
+    double locateDesil=(desilN/10.0)*totalFrequency;
+    int row=0;
+    for(row = 0; row < frequencyCummulative.size(); row++){
+        if(frequencyCummulative[row]>=locateDesil){
+            break;
+       }
+    }
+
+    double lowerBound=data[row].first-0.5;
+    double desilResult=lowerBound+ ((locateDesil-frequencyCummulative[row-1])/frequency[row])*classInterval;
+
+    return desilResult;
+}
+
+double grouped_data::findPersentil(int persentilN){
+    int totalFrequency = frequencyCummulative.back();
+    double locatePersentil=(persentilN/100.0)*totalFrequency;
+    int row=0;
+    for(row = 0; row < frequencyCummulative.size(); row++){
+        if(frequencyCummulative[row]>=locatePersentil){
+            break;
+       }
+    }
+
+    double lowerBound=data[row].first-0.5;
+    double persentilResult=lowerBound+ ((locatePersentil-frequencyCummulative[row-1])/frequency[row])*classInterval;
+
+    return persentilResult;
 }
