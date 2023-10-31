@@ -51,9 +51,9 @@ int grouped_data::getUserOption() {
     int input;
     std::cout << "APA YANG INGIN DICARI ?" << std::endl;
     std::cout << "===========================" << std::endl;
-    std::cout << "1. Modus                5. Desil               9. Simpangan Kuartil" << std::endl;
-    std::cout << "2. Rata-Rata            6. Persentil           10. Simpangan Rata-Rata" << std::endl;
-    std::cout << "3. Median               7. Range(Jangkauan)    11. Ragam(Variansi)" << std::endl;
+    std::cout << "1. Modus                5. Desil                   9. Simpangan Kuartil" << std::endl;
+    std::cout << "2. Rata-Rata            6. Persentil               10. Simpangan Rata-Rata" << std::endl;
+    std::cout << "3. Median               7. Range(Jangkauan)        11. Ragam(Variansi)" << std::endl;
     std::cout << "4. Kuartil              8. Jangkauan antarkuartil  12. Standar Deviasi" << std::endl;
     std::cout << "13. Exit" << std::endl;
     std::cout << "===========================" << std::endl;
@@ -64,100 +64,114 @@ int grouped_data::getUserOption() {
 }
 
 void grouped_data::loopMenu(){
-    int userOption=0;
+    int userOption = 0;
     char is_continue;
     enum option{MODE=1, MEAN, MEDIAN, KUARTIL, DESIL, PERSENTIL, RANGE, INTER_QUARTILE_RANGE, QUARTILE_DEVIATION, MEAN_DEVIATION, VARIANCE, STANDARD_DEVIATION, EXIT};
 
-    get_Grouped_Data();
-    get_frequency_cummulative();
-    get_classInterval();
-    system("cls");
-    show_Grouped_Data();
-
-    while(userOption != EXIT){
+    while (userOption != EXIT) {
         show_Grouped_Data();
-        userOption=getUserOption();
+        userOption = getUserOption();
 
-        switch(userOption){
-            case MODE:
+        switch (userOption) {
+            case MODE: {
                 double mode = findMode();
-                std::cout << "\nModus Data Kelompok: "  << mode << std::endl;
+                std::cout << "\nModus Data Kelompok: " << mode << std::endl;
                 break;
+            }
 
-            case MEAN:
+            case MEAN: {
                 double mean = findMean();
-                std::cout << "Mean Data Kelompok: "  << mean;
+                std::cout << "Mean Data Kelompok: " << mean;
                 break;
+            }
 
-            case MEDIAN:
-                 double median = findMedian();
-                 std::cout << "\nMedian Data Kelompok: "  << median << std::endl;
+            case MEDIAN: {
+                double median = findMedian();
+                std::cout << "\nMedian Data Kelompok: " << median << std::endl;
                 break;
+            }
 
-            case KUARTIL:
-                 double* kuartils = findKuartil();
-                 for(int i=0; i<3; i++){
-                std::cout << "Kuartil " << i+1 << ": " << kuartils[i] << std::endl;
-                 }
-                 delete[] kuartils;
-
+            case KUARTIL: {
+                double* kuartils = findKuartil();
+                for (int i = 0; i < 3; i++) {
+                    std::cout << "Kuartil " << i + 1 << ": " << kuartils[i] << std::endl;
+                }
+                delete[] kuartils;
                 break;
+            }
 
-            case DESIL:
+            case DESIL: {
                 int find;
                 std::cout << "Desil Ke-Berapa: ";
                 std::cin >> find;
                 double desil = findDesil(find);
                 std::cout << "Desil Ke-" << find << ": " << desil << std::endl;
                 break;
+            }
 
-            case PERSENTIL:
+            case PERSENTIL: {
                 int find;
                 std::cout << "Persentil Ke-Berapa: ";
                 std::cin >> find;
                 double persentil = findPersentil(find);
-                 std::cout << "Persentil Ke-" << find << ": " << persentil << std::endl;
+                std::cout << "Persentil Ke-" << find << ": " << persentil << std::endl;
                 break;
+            }
 
-            case RANGE:
-
+            case RANGE: {
+                double range=findRange();
+                std::cout << "Jangkauan(range): " << range << std::endl;
                 break;
+            }
 
-            case INTER_QUARTILE_RANGE:
-                 double interQuartileRange = findInterQuartileRange();
-                  std::cout << "Nilai Jangkauan antarkuartil: " << interQuartileRange << std::endl;
+            case INTER_QUARTILE_RANGE: {
+                double interQuartileRange = findInterQuartileRange();
+                std::cout << "Nilai Jangkauan antarkuartil: " << interQuartileRange << std::endl;
                 break;
+            }
 
-            case QUARTILE_DEVIATION:
-
+            case QUARTILE_DEVIATION: {
+                double quartileDeviation = findQuartileDeviation();
+                std::cout << "Nilai Simpangan Kuartil: " << quartileDeviation << std::endl;
                 break;
+            }
 
-            case MEAN_DEVIATION:
-                 double meanDeviation = findMeanDeviation();
+            case MEAN_DEVIATION: {
+                double meanDeviation = findMeanDeviation();
                 std::cout << "Nilai Simpangan rata-rata: " << meanDeviation << std::endl;
                 break;
-            case VARIANCE:
+            }
+
+            case VARIANCE: {
                 double variance = findVariance();
                 std::cout << "Nilai Ragam(Variansi): " << variance << std::endl;
                 break;
+            }
 
-            case STANDARD_DEVIATION:
+            case STANDARD_DEVIATION: {
                 double standardDeviation = findStandardDeviation();
-                 std::cout << "Nilai Standar Deviasi: " << standardDeviation << std::endl;
+                std::cout << "Nilai Standar Deviasi: " << standardDeviation << std::endl;
                 break;
+            }
 
-            case EXIT:
+            case EXIT: {
                 std::cout << "Exiting the Data Kelompok" << std::endl;
+                std::cin.get(); 
+                std::cin.ignore();
                 break;
+            }
 
             default:
                 std::cout << "Invalid option. Please select an option from 1 to 13." << std::endl;
-            }
-            system("cls");
+                std::cin.get(); 
+                std::cin.ignore();
         }
-        
-
+        std::cin.get();
+        std::cin.ignore();
+        system("cls");
     }
+}
+
 
 
 
