@@ -1,10 +1,16 @@
 #include <iostream>
+#include <cmath>
 using namespace std;
+
 
 void showArray(int array[], int size){
     cout<<"data yang sudah diurutkan: ";
 	for(int i=0;i<size;i++) cout<<array[i]<<" ";
 	cout<<endl;
+	int max = array[size-1];
+	int min = array[0];
+	int range = max-min;
+	printf("Nilai maksimal data adalah: %d\nNilai minimal data adalah: %d\nJangkauan data adalah: %d\n",max,min,range);
 }
 
 void insertArray(int array[], int size){
@@ -53,7 +59,16 @@ void mean(int array[],int size){
 	double sum = 0;
 	for(int i=0;i<size;i++) sum+=array[i];
 	double mean=sum/size;
-	cout<<"Rata-rata dari data tersebut adalah: ";
+	double selisih = 0;
+	for(int i=0;i<size;i++) selisih+=abs(array[i]-mean);
+	double simpangRata = selisih/size;
+	double variansi = pow(selisih,2)/size;
+	double deviasi = sqrt(variansi);
+	cout<<"Rata-rata dari data tersebut adalah: "<<mean<<endl;
+	cout<<"Simpangan rata-rata dari data tersebut adalah: "<<simpangRata<<endl;
+	cout<<"Variansi data tersebut adalah: "<<variansi<<endl;
+	cout<<"Standar Deviasi dari data tersebut adalah: "<<deviasi<<endl;
+	
 }
 
 void quartil(int array[],int size){
@@ -65,10 +80,13 @@ void quartil(int array[],int size){
 	
 	q1 = (akhirBawah % 2 == 0) ? (array[akhirBawah / 2 + 1] + array[akhirBawah / 2]) / 2 : array[akhirBawah / 2];
 	q3 = (awalAtas % 2 ==0) ? (array[awalAtas + (size - awalAtas) / 2 - 1] + array[awalAtas + (size - awalAtas) / 2]) /2 : array[awalAtas + (size - awalAtas) / 2];
-	
-	cout<<"Quartil pertama: "<<q1<<endl;
-	cout<<"Quartil kedua: "<<q2<<endl;
-	cout<<"Quartil ketiga: "<<q3<<endl;
+	int qrange = q3-q1;
+	int simpanganQ = qrange / 2;
+	cout<<"Kuartil pertama: "<<q1<<endl;
+	cout<<"Kuartil kedua: "<<q2<<endl;
+	cout<<"Kuartil ketiga: "<<q3<<endl;
+	cout<<"Jangkauan Interkuartil: "<<qrange<<endl;
+	cout<<"Simpangan interkuartil: "<<simpanganQ<<endl;
 }
 
 void desil(int array[], int size) {
@@ -95,7 +113,33 @@ int main(){
 	int dataArray[sizeArray];
 	insertArray(dataArray,sizeArray);
 	arraySort(dataArray,sizeArray);
+	//cls taro sini
 	showArray(dataArray,sizeArray);
+	int choice;
+	cout<<"Pilihan pengolahan data:"<<endl;
+	cout<<"1. Modus"<<endl;
+	cout<<"2. Mean(Rata-rata)"<<endl;
+	cout<<"3. Quartil"<<endl;
+	cout<<"4. Desil"<<endl;
+	cout<<"Pilih: ";
+	cin>>choice;
+	
+	switch (choice){
+		case 1: 
+			modus(dataArray,sizeArray);
+			break;
+		case 2: 
+			mean(dataArray,sizeArray);
+			break;
+		case 3: 
+			quartil(dataArray,sizeArray);
+			break;
+		case 4: 
+			desil(dataArray,sizeArray);
+			break;
+		default:
+			cout<<"Pilihan tidak valid."<<endl;	
+	}
 	//mean(dataArray,sizeArray);
 	//modus(dataArray,sizeArray);
 	//quartil(dataArray,sizeArray);
