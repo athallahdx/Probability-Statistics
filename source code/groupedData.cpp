@@ -4,12 +4,14 @@
 #include "groupedData.h"
 
 
-void grouped_data::get_Grouped_Data(){
+grouped_data::grouped_data(){
     int row;
     int lowerBound;
     int upperBound;
     int freq;
-
+    system("cls");
+    std::cout << "OLAH DATA KELOMPOK\n";
+    std::cout << "=============================\n";
     std::cout << "Berapa banyak baris data : ";
     std::cin >> row;
     for(int i=0; i<row; i++){
@@ -20,6 +22,9 @@ void grouped_data::get_Grouped_Data(){
         data.push_back(std::make_pair(lowerBound, upperBound));
         frequency.push_back(freq);
     }
+    get_frequency_cummulative();
+    get_classInterval();
+    system("cls");
 }
 
 void grouped_data::get_frequency_cummulative(){
@@ -67,11 +72,11 @@ void grouped_data::loopMenu(){
     int userOption = 0;
     char is_continue;
     enum option{MODE=1, MEAN, MEDIAN, KUARTIL, DESIL, PERSENTIL, RANGE, INTER_QUARTILE_RANGE, QUARTILE_DEVIATION, MEAN_DEVIATION, VARIANCE, STANDARD_DEVIATION, EXIT};
-
+    
     while (userOption != EXIT) {
         show_Grouped_Data();
         userOption = getUserOption();
-
+        
         switch (userOption) {
             case MODE: {
                 double mode = findMode();
@@ -171,9 +176,6 @@ void grouped_data::loopMenu(){
         system("cls");
     }
 }
-
-
-
 
 double grouped_data::findMode(){
     int maxFrequency=frequency[0];

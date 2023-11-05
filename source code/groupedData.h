@@ -10,14 +10,14 @@ class grouped_data{
         std::vector<int> frequencyCummulative;
         int classInterval;
 
-        void get_Grouped_Data();
-        void get_frequency_cummulative();
-        void get_classInterval();
+        grouped_data();
         void show_Grouped_Data();
         void loopMenu();
         int getUserOption();
 
     private:
+        void get_frequency_cummulative();
+        void get_classInterval();
         double findMode();
         double findMean();
         double findMedian();
@@ -38,3 +38,4 @@ class grouped_data{
 
 
 #endif
+
