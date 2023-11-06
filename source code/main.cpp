@@ -29,6 +29,8 @@ int main(){
                 Binomial_Distribution binomd;
                 double binom=binomd.binomdist();
                 std::cout << "Hasil: " << binom << std::endl;
+                std::cin.get(); 
+                std::cin.ignore();
             break;
             }
         default:{
@@ -61,7 +63,7 @@ int menu(){
     int input;
     system("cls");
 
-    std::cout << "OLAH DATA STATISTIKA DAN DISTRIBUSI BINOMIAL" << std::endl;
+    std::cout << "OLAH DATA PROBABILITAS DAN STATISTIKA" << std::endl;
     std::cout << "=============================================" << std::endl;
     std::cout << "1. Data Tunggal" << std::endl;
     std::cout << "2. Data Kelompok" << std::endl;
