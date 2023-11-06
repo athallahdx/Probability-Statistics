@@ -95,8 +95,6 @@ void individual_data::loopMenu(){
 
             case EXIT: {
                 std::cout << "Exiting the Data Individual" << std::endl;
-                std::cin.get(); 
-                std::cin.ignore();
                 break;
             }
 

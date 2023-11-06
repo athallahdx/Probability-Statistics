@@ -41,15 +41,6 @@ int main(){
             }
         }
 
-         while (lanjut != 'Y' && lanjut != 'y' && lanjut != 'N' && lanjut != 'n') {
-                std::cout << "Lanjutkan?(y/n) : ";
-                std::cin >> lanjut;
-                     if (lanjut == 'n' || lanjut == 'N') {
-                     userOption = 4;
-                    break;
-                     }
-         system("cls");
-    }
    }
 
     std::cout << "\nAkhir dari program" << std::endl;
