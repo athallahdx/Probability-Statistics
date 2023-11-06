@@ -159,8 +159,13 @@ void individual_data::findMode() {
             modus = data[i];
         }
     }
+    if(totalMuncul==1){
+        std::cout << "\nTidak Ada Modus" << std::endl;
+        std::cout << "Jumlah Kemunculan Semua Elemen Sama" << std::endl;
+    }else{
 	std::cout<<"Modus dari data tersebut adalah: "<< modus << std::endl;
 	std::cout<<"Data " << modus << " muncul sebanyak " << totalMuncul <<  " kali" << std::endl;
+    }
 }
 
 void individual_data::findRange() {
