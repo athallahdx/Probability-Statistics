@@ -73,7 +73,7 @@ void grouped_data::loopMenu(){
     char is_continue;
     enum option{MODE=1, MEAN, MEDIAN, KUARTIL, DESIL, PERSENTIL, RANGE, INTER_QUARTILE_RANGE, QUARTILE_DEVIATION, MEAN_DEVIATION, VARIANCE, STANDARD_DEVIATION, EXIT};
     
-    while (userOption != EXIT) {
+    do {
         show_Grouped_Data();
         userOption = getUserOption();
         
@@ -174,7 +174,7 @@ void grouped_data::loopMenu(){
         std::cin.get();
         std::cin.ignore();
         system("cls");
-    }
+    } while (userOption != EXIT);
 }
 
 double grouped_data::findMode(){

@@ -10,7 +10,7 @@ int main(){
     enum option{DATA_TUNGGAL=1, DATA_KELOMPOK, BINOMIALDIST, EXIT};
     int userOption=0;
 
-   while (userOption != EXIT) {
+   do {
     userOption = menu();
         switch (userOption)
         {
@@ -40,7 +40,7 @@ int main(){
             }
         }
 
-   }
+   } while (userOption != EXIT);
 
     std::cout << "\nAkhir dari program" << std::endl;
 
