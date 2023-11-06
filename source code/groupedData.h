@@ -33,9 +33,5 @@ class grouped_data{
 
 };
 
-
-
-
-
 #endif
 

@@ -32,7 +32,7 @@ int individual_data::getUserOption(){
     std::cout << "3. Median               7. Simpangan Rata-Rata"<< std::endl;
     std::cout << "4. Kuartil              8. Ragam(Variansi)" << std::endl;  
     std::cout << "===========================" << std::endl;
-    std::cout << "Masukkan opsi [1-13]: ";
+    std::cout << "Masukkan opsi [1-10]: ";
     std::cin >> input;
 
     return input;

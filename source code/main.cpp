@@ -8,10 +8,9 @@ int menu();
 int main(){
     
     enum option{DATA_TUNGGAL=1, DATA_KELOMPOK, BINOMIALDIST, EXIT};
-    char lanjut='Y';
     int userOption=0;
 
-   while (userOption != EXIT && (lanjut == 'Y' || lanjut == 'y')) {
+   while (userOption != EXIT) {
     userOption = menu();
         switch (userOption)
         {
@@ -28,7 +27,7 @@ int main(){
         case BINOMIALDIST:{ 
                 Binomial_Distribution binomd;
                 double binom=binomd.binomdist();
-                std::cout << "Hasil: " << binom << std::endl;
+                std::cout << "Hasil probabilitas dalam bentuk riil: " << binom << std::endl;
                 std::cin.get(); 
                 std::cin.ignore();
             break;

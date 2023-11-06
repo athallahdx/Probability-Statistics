@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <numeric>
 
 class Binomial_Distribution {
 public:
