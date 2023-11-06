@@ -238,9 +238,6 @@ void individual_data::findDesil() {
 	int size=data.size();
     int k = size / 10;
 
-   if(size<10){
-    std::cout << "Frekuensi data kurang dari 10, tidak ada desil!\n";
-    } else{
     for (int i = 0; i < 10; i++) {
         if (size % 10 == 0) {
             desiles[i] = data[k * (i + 1) - 1];
@@ -252,5 +249,5 @@ void individual_data::findDesil() {
         }
         std::cout << "Desil " << i + 1 << ": " << desiles[i] << std::endl;
     }
-    }
+    
 }
